@@ -1,6 +1,9 @@
 <?php
+
 use Illuminate\Support\Facades\Route;
-Route::get('/', fn () => response()->json([
+use Inertia\Inertia;
+
+Route::get('/', fn () => Inertia::render('Home', [
     'application' => config('app.name'),
     'module' => 'Penetapan Beasiswa dari SK',
     'status' => 'foundation',
