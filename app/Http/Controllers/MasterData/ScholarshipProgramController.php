@@ -35,7 +35,6 @@ class ScholarshipProgramController extends Controller
 
     public function destroy(ScholarshipProgram $program): RedirectResponse
     {
-        abort_if($program->recipients()->exists(), 409, 'Program sudah digunakan dan tidak dapat dihapus.');
         $program->delete();
 
         return to_route('master.programs.index')->with('success', 'Program beasiswa berhasil dihapus.');
