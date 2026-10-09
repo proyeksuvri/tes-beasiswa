@@ -11,16 +11,14 @@ COPY --from=node:22-alpine /usr/local/bin/node /usr/local/bin/node
 COPY --from=node:22-alpine /usr/local/lib/node_modules /usr/local/lib/node_modules
 RUN ln -s /usr/local/lib/node_modules/npm/bin/npm-cli.js /usr/local/bin/npm
 
-ENV APACHE_DOCUMENT_ROOT=/var/www/html/public
-RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/sites-available/*.conf \
-    && sed -ri -e 's!/var/www/!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/apache2.conf /etc/apache2/conf-available/*.conf
+RUN sed -i 's/^Listen 80$/Listen 10000/' /etc/apache2/ports.conf
+COPY docker/000-default.conf /etc/apache2/sites-available/000-default.conf
 
 WORKDIR /var/www/html
 COPY . .
 
-RUN composer install --no-dev --prefer-dist --no-interaction --optimize-autoloader \
-    && npm ci || npm install
-RUN npm run build \
+RUN composer install --no-dev --prefer-dist --no-interaction --optimize-autoloader
+RUN npm install --no-audit --no-fund && npm run build \
     && chown -R www-data:www-data storage bootstrap/cache \
     && chmod -R ug+rwx storage bootstrap/cache
 
