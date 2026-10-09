@@ -13,7 +13,7 @@ return [
         'single' => ['driver' => 'single', 'path' => storage_path('logs/laravel.log'), 'level' => env('LOG_LEVEL', 'debug'), 'replace_placeholders' => true],
         'daily' => ['driver' => 'daily', 'path' => storage_path('logs/laravel.log'), 'level' => env('LOG_LEVEL', 'debug'), 'days' => (int) env('LOG_DAILY_DAYS', 14), 'replace_placeholders' => true],
         'stderr' => ['driver' => 'monolog', 'level' => env('LOG_LEVEL', 'debug'), 'handler' => StreamHandler::class, 'with' => ['stream' => 'php://stderr'], 'processors' => [PsrLogMessageProcessor::class]],
-        'syslog' => ['driver' => ' monolog', 'level' => env('LOG_LEVEL', 'debug'), 'handler' => SyslogUdpHandler::class, 'handler_with' => ['host' => env('PAPERTRAIL_URL'), 'port' => env('PAPERTRAIL_PORT')]],
+        'syslog' => ['driver' => 'monolog', 'level' => env('LOG_LEVEL', 'debug'), 'handler' => SyslogUdpHandler::class, 'handler_with' => ['host' => env('PAPERTRAIL_URL'), 'port' => env('PAPERTRAIL_PORT')]],
         'null' => ['driver' => 'monolog', 'handler' => NullHandler::class],
         'emergency' => ['path' => storage_path('logs/laravel.log')],
     ],
