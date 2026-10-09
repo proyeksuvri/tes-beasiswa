@@ -1,0 +1,45 @@
+services:
+  - type: web
+    name: beasiswa-app
+    runtime: docker
+    plan: free
+    branch: feat/fondasi-proyek
+    dockerfilePath: ./Dockerfile
+    healthCheckPath: /up
+    envVars:
+      - key: APP_NAME
+        value: Aplikasi Pengelolaan Beasiswa
+      - key: APP_ENV
+        value: production
+      - key: APP_DEBUG
+        value: "false"
+      - key: APP_KEY
+        generateValue: true
+      - key: LOG_LEVEL
+        value: warning
+      - key: DB_CONNECTION
+        value: pgsql
+      - key: DB_URL
+        fromDatabase:
+          name: beasiswa-db
+          property: connectionString
+      - key: SESSION_DRIVER
+        value: file
+      - key: SESSION_ENCRYPT
+        value: "true"
+      - key: CACHE_STORE
+        value: file
+      - key: QUEUE_CONNECTION
+        value: sync
+      - key: BOOTSTRAP_ADMIN_NAME
+        value: Administrator
+      - key: BOOTSTRAP_ADMIN_EMAIL
+        sync: false
+      - key: BOOTSTRAP_ADMIN_PASSWORD
+        sync: false
+
+databases:
+  - name: beasiswa-db
+    plan: free
+    databaseName: beasiswa
+    user: beasiswa_user
