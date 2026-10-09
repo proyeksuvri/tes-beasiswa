@@ -27,7 +27,7 @@ const canManage = () => (page.props.auth?.user?.roles ?? []).some(role => ['admi
       </div>
       <section v-if="canManage()" class="mt-6 rounded-xl border border-slate-200 bg-white p-6">
         <h2 class="font-semibold">Data referensi</h2>
-        <div class="mt-3 flex flex-wrap gap-3"><a href="/master/program-beasiswa" class="rounded-lg bg-indigo-700 px-4 py-2 text-sm font-semibold text-white">Program Beasiswa</a><a href="/master/fakultas" class="rounded-lg bg-indigo-700 px-4 py-2 text-sm font-semibold text-white">Fakultas</a><a href="/master/bank" class="rounded-lg bg-indigo-700 px-4 py-2 text-sm font-semibold text-white">Bank</a><a href="/master/periode-akademik" class="rounded-lg bg-indigo-700 px-4 py-2 text-sm font-semibold text-white">Periode Akademik</a></div>
+        <div class="mt-3 flex flex-wrap gap-3"><a href="/master/program-beasiswa" class="rounded-lg bg-indigo-700 px-4 py-2 text-sm font-semibold text-white">Program Beasiswa</a><a href="/master/fakultas" class="rounded-lg bg-indigo-700 px-4 py-2 text-sm font-semibold text-white">Fakultas</a><a href="/master/bank" class="rounded-lg bg-indigo-700 px-4 py-2 text-sm font-semibold text-white">Bank</a><a href="/master/periode-akademik" class="rounded-lg bg-indigo-700 px-4 py-2 text-sm font-semibold text-white">Periode Akademik</a><a href="/master/program-studi" class="rounded-lg bg-indigo-700 px-4 py-2 text-sm font-semibold text-white">Program Studi</a><a href="/master/mahasiswa" class="rounded-lg bg-indigo-700 px-4 py-2 text-sm font-semibold text-white">Mahasiswa</a></div>
       </section>
     </section>
   </main>
