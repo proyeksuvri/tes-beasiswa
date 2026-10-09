@@ -31,6 +31,14 @@ Route::middleware('auth')->group(function (): void {
         Route::post('/fakultas', [FacultyController::class, 'store'])->name('faculties.store');
         Route::put('/fakultas/{faculty}', [FacultyController::class, 'update'])->name('faculties.update');
         Route::delete('/fakultas/{faculty}', [FacultyController::class, 'destroy'])->name('faculties.destroy');
+        Route::get('/bank', [BankController::class, 'index'])->name('banks.index');
+        Route::post('/bank', [BankController::class, 'store'])->name('banks.store');
+        Route::put('/bank/{bank}', [BankController::class, 'update'])->name('banks.update');
+        Route::delete('/bank/{bank}', [BankController::class, 'destroy'])->name('banks.destroy');
+        Route::get('/periode-akademik', [AcademicPeriodController::class, 'index'])->name('periods.index');
+        Route::post('/periode-akademik', [AcademicPeriodController::class, 'store'])->name('periods.store');
+        Route::put('/periode-akademik/{period}', [AcademicPeriodController::class, 'update'])->name('periods.update');
+        Route::delete('/periode-akademik/{period}', [AcademicPeriodController::class, 'destroy'])->name('periods.destroy');
     });
 
     Route::get('/akses/operasional', fn () => Inertia::render('Dashboard'))
