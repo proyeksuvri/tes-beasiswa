@@ -49,20 +49,20 @@ class StudentController extends Controller
         return $request->validate([
             'nim' => ['required', 'string', 'max:50', Rule::unique('students', 'nim')->ignore($student?->id)],
             'name' => ['required', 'string', 'max:255'],
-            'faculty_id' => ['nullable', 'integer', Rule::exists('faculties', 'id')->where('is_active', true)],
+            'faculty_id' => ['nullable', 'integer', 'required_with:study_program_id', Rule::exists('faculties', 'id')->where('is_active', true)],
             'study_program_id' => [
                 'nullable',
                 'integer',
                 Rule::exists('study_programs', 'id')
                     ->where('is_active', true)
                     ->where(fn ($query) => $query->where('faculty_id', $facultyId)),
-                Rule::requiredIf(fn () => filled($studyProgramId) && blank($facultyId)),
             ],
             'entry_year' => ['nullable', 'integer', 'min:1900', 'max:2200'],
             'is_active' => ['required', 'boolean'],
         ], [
             'study_program_id.exists' => 'Program studi harus aktif dan berada di fakultas yang dipilih.',
             'study_program_id.required' => 'Fakultas harus dipilih sebelum memilih program studi.',
+            'faculty_id.required_with' => 'Fakultas harus dipilih jika program studi diisi.',
         ]);
     }
 }
