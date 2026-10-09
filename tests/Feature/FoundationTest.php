@@ -6,12 +6,15 @@ use Tests\TestCase;
 
 class FoundationTest extends TestCase
 {
-    public function test_home_route_returns_foundation_status(): void
+    public function test_home_route_renders_the_foundation_page(): void
     {
         $response = $this->get('/');
 
-        $response->assertOk()
-            ->assertJsonPath('module', 'Penetapan Beasiswa dari SK')
-            ->assertJsonPath('status', 'foundation');
+        $response->assertOk();
+        $response->assertInertia(fn ($page) => $page
+            ->component('Home')
+            ->where('module', 'Penetapan Beasiswa dari SK')
+            ->where('status', 'foundation')
+        );
     }
 }
