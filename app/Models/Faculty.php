@@ -14,6 +14,11 @@ class Faculty extends Model
         return ['is_active' => 'boolean'];
     }
 
+    public function students(): HasMany
+    {
+        return $this->hasMany(Student::class);
+    }
+
     public function studyPrograms(): HasMany
     {
         return $this->hasMany(StudyProgram::class);
