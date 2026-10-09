@@ -3,6 +3,7 @@
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\MasterData\ScholarshipProgramController;
+use App\Http\Controllers\MasterData\FacultyController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -26,6 +27,10 @@ Route::middleware('auth')->group(function (): void {
         Route::post('/program-beasiswa', [ScholarshipProgramController::class, 'store'])->name('programs.store');
         Route::put('/program-beasiswa/{program}', [ScholarshipProgramController::class, 'update'])->name('programs.update');
         Route::delete('/program-beasiswa/{program}', [ScholarshipProgramController::class, 'destroy'])->name('programs.destroy');
+        Route::get('/fakultas', [FacultyController::class, 'index'])->name('faculties.index');
+        Route::post('/fakultas', [FacultyController::class, 'store'])->name('faculties.store');
+        Route::put('/fakultas/{faculty}', [FacultyController::class, 'update'])->name('faculties.update');
+        Route::delete('/fakultas/{faculty}', [FacultyController::class, 'destroy'])->name('faculties.destroy');
     });
 
     Route::get('/akses/operasional', fn () => Inertia::render('Dashboard'))
