@@ -14,7 +14,7 @@ services:
       - key: APP_DEBUG
         value: "false"
       - key: APP_KEY
-        generateValue: true
+        sync: false
       - key: LOG_LEVEL
         value: warning
       - key: DB_CONNECTION
