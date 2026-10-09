@@ -6,6 +6,8 @@ use App\Http\Controllers\MasterData\ScholarshipProgramController;
 use App\Http\Controllers\MasterData\FacultyController;
 use App\Http\Controllers\MasterData\BankController;
 use App\Http\Controllers\MasterData\AcademicPeriodController;
+use App\Http\Controllers\MasterData\StudyProgramController;
+use App\Http\Controllers\MasterData\StudentController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -41,6 +43,14 @@ Route::middleware('auth')->group(function (): void {
         Route::post('/periode-akademik', [AcademicPeriodController::class, 'store'])->name('periods.store');
         Route::put('/periode-akademik/{period}', [AcademicPeriodController::class, 'update'])->name('periods.update');
         Route::delete('/periode-akademik/{period}', [AcademicPeriodController::class, 'destroy'])->name('periods.destroy');
+        Route::get('/program-studi', [StudyProgramController::class, 'index'])->name('study-programs.index');
+        Route::post('/program-studi', [StudyProgramController::class, 'store'])->name('study-programs.store');
+        Route::put('/program-studi/{studyProgram}', [StudyProgramController::class, 'update'])->name('study-programs.update');
+        Route::delete('/program-studi/{studyProgram}', [StudyProgramController::class, 'destroy'])->name('study-programs.destroy');
+        Route::get('/mahasiswa', [StudentController::class, 'index'])->name('students.index');
+        Route::post('/mahasiswa', [StudentController::class, 'store'])->name('students.store');
+        Route::put('/mahasiswa/{student}', [StudentController::class, 'update'])->name('students.update');
+        Route::delete('/mahasiswa/{student}', [StudentController::class, 'destroy'])->name('students.destroy');
     });
 
     Route::get('/akses/operasional', fn () => Inertia::render('Dashboard'))
