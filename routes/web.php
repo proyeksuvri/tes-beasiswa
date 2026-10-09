@@ -4,6 +4,8 @@ use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\MasterData\ScholarshipProgramController;
 use App\Http\Controllers\MasterData\FacultyController;
+use App\Http\Controllers\MasterData\BankController;
+use App\Http\Controllers\MasterData\AcademicPeriodController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
